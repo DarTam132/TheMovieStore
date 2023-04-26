@@ -1,41 +1,62 @@
-import { MOVIE_DB_URL, types, MOCK_API_LINK } from "./config.js";
-let moviesTable = document.querySelector(".table-content");
+import { MOVIE_DB_URL, types, MOCK_API_LINK, movieArray } from "./config.js";
+import * as Views from "./views.js";
 
-const mockAPImovies = async () => {
-  const res = await fetch(MOCK_API_LINK);
-  const mockApi = await res.json();
-  mockApi.forEach((movie) => {
-    moviesTable.innerHTML += ` <div class="movie-line ${
-      movie.id % 2 === 1 ? "background-odd" : "background-even"
-    }">
-    <div class="nr-title-img">
-      <span class="movie-number table-style">${movie.id}.</span>
-      <img
-        class="movie-photo"
-        src="https://image.tmdb.org/t/p/w500${mockApi[movie.id].movie_photo}"
-        alt=""
-      />
-      <span class="movie-title table-style"
-        >${movie.movie_title}</span
-      >
-    </div>
-    <div class="price-btns"> 
-    <span class="movie-price table-style">${movie.price}$</span>
-    <button class="change-btn table-style">Change price</button>
-    <button class="delete-btn table-style">Delete</button>
-    </div>
-  </div>`;
+const loadingSpinner = document.querySelector(".loading");
+const addBtn = document.querySelector(".add-btn");
+const mainTable = document.querySelector(".admin-main");
+const form = document.querySelector("form");
+const overlay = document.querySelector(".overlay");
+const cancelBtn = document.querySelector("#cancel-btn");
+const addForm = document.querySelector(".add-to-mock");
+
+addBtn.addEventListener("click", Views.toggle);
+overlay.addEventListener("click", Views.toggle);
+cancelBtn.addEventListener("click", () => {
+  Views.toggle();
+  inputs.forEach((e) => (e.value = ""));
+});
+
+const addToMockApi = async (movie) => {
+  let nr = (await movieArray()) + 1;
+  const newMovie = {
+    custom_id: nr,
+    movie_title: movie.movie_title,
+    description: movie.description,
+    language: movie.language,
+    movie_photo: movie.movie_photo,
+    price: movie.price,
+    type: movie.type,
+  };
+  const mockApi = await fetch(MOCK_API_LINK, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(newMovie),
   });
-  console.log(moviesTable);
-  // const imgElement = document.createElement("img"); // Create img element
-  // imgElement.src = `https://image.tmdb.org/t/p/w500${mockApi[9].movie_photo}`; // Set src attribute to movie image URL
-  // document.body.appendChild(imgElement);
-  console.log(mockApi);
+
+  // const customResponse = await mockApi.json();
 };
 
-mockAPImovies();
-//  movies.forEach((movie) => {
-//     const imgElement = document.createElement("img"); // Create img element
-//     imgElement.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`; // Set src attribute to movie image URL
-//     document.body.appendChild(imgElement); // Append img element to the body or any other desired location in the HTML document
-//   });
+addForm.addEventListener("click", async (e) => {
+  try {
+    e.preventDefault();
+    await Views.renderNewAddedMovie();
+    await addToMockApi(Views.renderNewAddedMovie());
+  } catch (err) {
+    console.error(err);
+  }
+});
+
+const mockAPImovies = async () => {
+  try {
+    const res = await fetch(MOCK_API_LINK);
+    const mockApi = await res.json();
+
+    //Rendering the movies in the admin section with the help of the exported movieView function
+    mockApi.forEach((movie) => Views.movieView(movie)),
+      loadingSpinner.classList.add("hidden");
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+window.addEventListener("load", () => setTimeout(mockAPImovies, 1500));

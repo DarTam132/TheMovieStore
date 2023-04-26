@@ -9,16 +9,96 @@
     <title>Admin</title>
   </head>
   <body>
+    <div class="overlay hidden"></div>
     <div class="admin-container">
       <nav class="admin-nav">
-        <span><a class="logo" href="index.html">TheMovieStore</a></span>
+        <span><a class="logo" href="index.html">The Movie Store</a></span>
       </nav>
+
+      <form class="hidden">
+        <label for="title">Title: </label>
+        <input
+          type="text"
+          class="input"
+          id="title"
+          placeholder="Enter the movie title."
+          autocomplete="off"
+          required
+        />
+        <label for="language">Language: </label>
+        <input
+          type="text"
+          class="input"
+          id="language"
+          placeholder="Enter the movie language."
+          autocomplete="off"
+          required
+        />
+        <label for="photo">Photo: </label>
+        <input
+          type="text"
+          class="input"
+          id="photo"
+          placeholder="Enter the path to the movie photo."
+          autocomplete="off"
+          required
+        />
+        <label for="price">Price: </label>
+        <input
+          type="text"
+          class="input"
+          id="price"
+          placeholder="Enter the price of the movie."
+          autocomplete="off"
+          required
+        />
+        <label for="type">Type: </label>
+        <input
+          type="text"
+          class="input"
+          id="type"
+          placeholder="Enter the type of the movie."
+          autocomplete="off"
+          required
+        />
+        <label for="description">Description: </label>
+        <textarea
+          class="input"
+          id="description"
+          cols="25"
+          rows="2"
+          placeholder="Enter a short description of the movie."
+          required
+        ></textarea>
+        <button class="add-to-mock" id="add-btn">Add</button>
+
+        <button id="cancel-btn">Cancel</button>
+      </form>
       <main class="admin-main">
         <div class="table-head">
           <span class="table-heading table-style">Movies Handling</span>
           <button class="add-btn table-style">Add Movie</button>
         </div>
-        <div class="loading"></div>
+        <div class="loading">
+          <svg
+            width="80px"
+            height="80px"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              opacity="0.2"
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19ZM12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+              fill="#000000"
+            />
+            <path
+              d="M2 12C2 6.47715 6.47715 2 12 2V5C8.13401 5 5 8.13401 5 12H2Z"
+              fill="#000000"
+            />
+          </svg>
+        </div>
         <div class="table-content">
           <!-- <div class="movie-line">
           <div class="nr-title-img">

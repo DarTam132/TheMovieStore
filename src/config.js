@@ -8,14 +8,13 @@ export const types = {
 };
 export const MOCK_API_LINK =
   "https://644285cb33997d3ef912811f.mockapi.io/admin/movies";
-// export const MOVIE_IMG_LINK = ``
 
 // Population the mock API with data from the movie DB API
-
-const getMovies = async (type) => {
+// let customId = 1;
+const getMovies = async (type, id) => {
   try {
     let movies = [];
-
+    let customId = id;
     const genreId = types[type];
     if (!genreId) {
       throw new Error(`Invalid genre type: ${type}`);
@@ -27,9 +26,12 @@ const getMovies = async (type) => {
 
     const data = await response.json();
     movies.push(...data.results);
-    console.log(movies);
-    movies.forEach(async (movie) => {
+    // console.log(movies);
+
+    // movies.forEach(async (movie) => {
+    for (const movie of movies) {
       const customData = {
+        custom_id: customId++,
         movie_title: movie.original_title,
         description: movie.overview,
         language: movie.original_language,
@@ -37,6 +39,7 @@ const getMovies = async (type) => {
         price: Math.floor(Math.random() * 50),
         type: type,
       };
+      // customDataArray.push(customData);
 
       const mockApi = await fetch(MOCK_API_LINK, {
         method: "POST",
@@ -44,16 +47,37 @@ const getMovies = async (type) => {
         body: JSON.stringify(customData),
       });
 
-      const customResponse = await mockApi.json();
-      console.log(customResponse);
-    });
-
+      // const customResponse = await mockApi.json();
+      // customId++;
+      console.log(customData);
+    }
+    // console.log(customDataArray);
     return movies;
   } catch (error) {
     console.error(error);
   }
 };
-// getMovies("action");
-// getMovies("love");
-// getMovies("animated");
-// getMovies("horror");
+
+// getMovies("action", 1);
+
+// getMovies("love", 21);
+
+// getMovies("animated", 41);
+
+// getMovies("horror", 61);
+
+export const movieArray = async () => {
+  try {
+    const getMovies = await fetch(MOCK_API_LINK);
+    if (!getMovies.ok) throw err;
+    const res = await getMovies.json();
+    // console.log(res.length);
+    return res.length;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+// console.log(nr);
+
+

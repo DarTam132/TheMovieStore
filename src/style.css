@@ -12,17 +12,23 @@
   --secondary3: #e3ccae;
 }
 
+/**********************/
+/* Admin table styles */
+/********************/
+
 .table-style {
   font-size: 2.5rem;
 }
 
 .admin-container {
+  /* display: flex;
+  align-items: center; */
   height: 100%;
   width: 100%;
   background-color: var(--secondary2);
 }
 .admin-nav {
-  width: 100vw;
+  width: 100%;
   height: 8vh;
   margin-bottom: 5vh;
   background-color: var(--secondary1);
@@ -39,9 +45,24 @@
 }
 
 .loading {
-  width: 80vw;
-  height: 77.5vh;
+  width: 80px;
+  height: 80vh;
   background-color: var(--secondary2);
+}
+
+.loading svg {
+  height: 15rem;
+  width: 15rem;
+  animation: rotate 2.5s infinite linear;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .admin-main {
@@ -133,3 +154,72 @@
   border: none;
   border-radius: 1.5rem;
 }
+
+.hidden {
+  display: none;
+}
+
+/**********************/
+/* Admin table styles */
+/********************/
+
+form label,
+form button {
+  font-size: 3rem;
+}
+
+form input,
+form textarea {
+  font-size: 2rem;
+}
+
+form {
+  width: 30vw;
+  height: 50vh;
+  padding: 3rem;
+  margin: 5vh auto;
+  background-color: var(--secondary2);
+  border: solid 0.3rem var(--main);
+  border-radius: 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  left: 35%;
+  z-index: 2;
+}
+
+form button {
+  width: 20rem;
+  height: 4rem;
+  background-color: var(--secondary1);
+  color: var(--secondary3);
+  border: none;
+  border-radius: 1.5rem;
+  align-self: center;
+  justify-self: center;
+}
+
+.labels,
+.inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 3rem;
+}
+
+#cancel-btn {
+  /* margin: 2.6rem 0 0 7rem; */
+}
+
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  background-color: #262a5661;
+  position: absolute;
+}
+/**********************/
+/* Admin form styles */
+/********************/
