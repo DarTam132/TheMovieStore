@@ -10,6 +10,7 @@ export const priceInput = document.getElementById("price");
 export const typeInput = document.getElementById("type");
 export const descriptionInput = document.getElementById("description");
 import { movieArray } from "./config.js";
+import { addToMockApi } from "./config.js";
 
 export const movieView = (movie) => {
   moviesTable.innerHTML += ` <div class="movie-line ${
@@ -24,14 +25,13 @@ export const movieView = (movie) => {
       ? `https://image.tmdb.org/t/p/w500${movie.movie_photo}`
       : movie.movie_photo
   }"
-  alt="Movie poster"
-  />
-  <span class="movie-title table-style"
-    >${movie.movie_title}</span
-  >
+  alt="Movie poster"/>
+  <span class="movie-title table-style">${movie.movie_title}</span>
   </div>
   <div class="price-btns"> 
-  <span class="movie-price table-style">${movie.price}$</span>
+  <span class="movie-price table-style">${
+    movie.price
+  }</span><span class="table-style">$</span>
   <button class="change-btn table-style">Change price</button>
   <button class="delete-btn table-style">Delete</button>
   </div>
@@ -72,10 +72,12 @@ export const renderNewAddedMovie = async () => {
     price: priceInput.value,
     type: typeInput.value,
   };
+
   movieView(newMovie);
+  // Adding the movie to the mock in the same function with the rendering.
+  addToMockApi(newMovie);
   toggle();
-  // console.log(nr);
-  // console.log(newMovie);
+
   inputs.forEach((e) => (e.value = ""));
   return newMovie;
 };

@@ -10,7 +10,7 @@ export const MOCK_API_LINK =
   "https://644285cb33997d3ef912811f.mockapi.io/admin/movies";
 
 // Population the mock API with data from the movie DB API
-// let customId = 1;
+
 const getMovies = async (type, id) => {
   try {
     let movies = [];
@@ -26,9 +26,7 @@ const getMovies = async (type, id) => {
 
     const data = await response.json();
     movies.push(...data.results);
-    // console.log(movies);
 
-    // movies.forEach(async (movie) => {
     for (const movie of movies) {
       const customData = {
         custom_id: customId++,
@@ -39,7 +37,6 @@ const getMovies = async (type, id) => {
         price: Math.floor(Math.random() * 50),
         type: type,
       };
-      // customDataArray.push(customData);
 
       const mockApi = await fetch(MOCK_API_LINK, {
         method: "POST",
@@ -47,11 +44,9 @@ const getMovies = async (type, id) => {
         body: JSON.stringify(customData),
       });
 
-      // const customResponse = await mockApi.json();
-      // customId++;
       console.log(customData);
     }
-    // console.log(customDataArray);
+
     return movies;
   } catch (error) {
     console.error(error);
@@ -71,13 +66,23 @@ export const movieArray = async () => {
     const getMovies = await fetch(MOCK_API_LINK);
     if (!getMovies.ok) throw err;
     const res = await getMovies.json();
-    // console.log(res.length);
+
     return res.length;
   } catch (err) {
     console.error(err);
   }
 };
 
-// console.log(nr);
+export const addToMockApi = async (movie) => {
+  const mockApi = await fetch(MOCK_API_LINK, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(movie),
+  });
+};
 
-
+export const strToNumber = (str) =>
+  +str
+    .split("")
+    .filter((e) => !isNaN(+e))
+    .join("");

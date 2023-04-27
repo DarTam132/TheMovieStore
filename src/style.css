@@ -158,7 +158,9 @@
 .hidden {
   display: none;
 }
-
+.movie-price {
+  margin: -3rem;
+}
 /**********************/
 /* Admin table styles */
 /********************/

@@ -1,4 +1,10 @@
-import { MOVIE_DB_URL, types, MOCK_API_LINK, movieArray } from "./config.js";
+import {
+  MOVIE_DB_URL,
+  types,
+  MOCK_API_LINK,
+  movieArray,
+  strToNumber,
+} from "./config.js";
 import * as Views from "./views.js";
 
 const loadingSpinner = document.querySelector(".loading");
@@ -8,6 +14,7 @@ const form = document.querySelector("form");
 const overlay = document.querySelector(".overlay");
 const cancelBtn = document.querySelector("#cancel-btn");
 const addForm = document.querySelector(".add-to-mock");
+const tableOfContent = document.querySelector(".table-content");
 
 addBtn.addEventListener("click", Views.toggle);
 overlay.addEventListener("click", Views.toggle);
@@ -16,31 +23,10 @@ cancelBtn.addEventListener("click", () => {
   inputs.forEach((e) => (e.value = ""));
 });
 
-const addToMockApi = async (movie) => {
-  let nr = (await movieArray()) + 1;
-  const newMovie = {
-    custom_id: nr,
-    movie_title: movie.movie_title,
-    description: movie.description,
-    language: movie.language,
-    movie_photo: movie.movie_photo,
-    price: movie.price,
-    type: movie.type,
-  };
-  const mockApi = await fetch(MOCK_API_LINK, {
-    method: "POST",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify(newMovie),
-  });
-
-  // const customResponse = await mockApi.json();
-};
-
 addForm.addEventListener("click", async (e) => {
   try {
     e.preventDefault();
     await Views.renderNewAddedMovie();
-    await addToMockApi(Views.renderNewAddedMovie());
   } catch (err) {
     console.error(err);
   }
@@ -60,3 +46,39 @@ const mockAPImovies = async () => {
 };
 
 window.addEventListener("load", () => setTimeout(mockAPImovies, 1500));
+
+tableOfContent.addEventListener("click", (e) => {
+  if (e.target.classList.contains("change-btn")) {
+    const price = e.target.previousElementSibling.previousElementSibling;
+    price.contentEditable = true;
+    price.focus();
+    const initialPrice = price.textContent;
+    price.addEventListener("keydown", async (e) => {
+      if (
+        isNaN(+price.textContent) ||
+        (+price.textContent < 0 && e.key === "Enter")
+      ) {
+        alert("You need the write a valid number!");
+        price.contentEditable = false;
+        price.blur();
+        price.textContent = initialPrice;
+        return;
+      } else if (!isNaN(+price.textContent) !== NaN && e.key === "Enter") {
+        e.preventDefault();
+        price.contentEditable = false;
+        price.blur();
+        const customId = strToNumber(
+          price.parentNode.previousSibling.previousSibling.children[0]
+            .textContent
+        );
+        const request = await fetch(`${MOCK_API_LINK}/${customId}`, {
+          method: "PUT",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ price: +price.textContent }),
+        });
+        const response = await request.json();
+        console.log(response);
+      }
+    });
+  }
+});
