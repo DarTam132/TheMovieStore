@@ -53,10 +53,11 @@ tableOfContent.addEventListener("click", (e) => {
     price.contentEditable = true;
     price.focus();
     const initialPrice = price.textContent;
+    price.textContent = "";
     price.addEventListener("keydown", async (e) => {
       if (
         isNaN(+price.textContent) ||
-        (+price.textContent < 0 && e.key === "Enter")
+        (+price.textContent <= 0 && e.key === "Enter")
       ) {
         alert("You need the write a valid number!");
         price.contentEditable = false;
@@ -67,17 +68,13 @@ tableOfContent.addEventListener("click", (e) => {
         e.preventDefault();
         price.contentEditable = false;
         price.blur();
-        const customId = strToNumber(
-          price.parentNode.previousSibling.previousSibling.children[0]
-            .textContent
-        );
+        const customId = strToNumber(Views.customDOMNav(price));
+
         const request = await fetch(`${MOCK_API_LINK}/${customId}`, {
           method: "PUT",
           headers: { "content-type": "application/json" },
           body: JSON.stringify({ price: +price.textContent }),
         });
-        const response = await request.json();
-        console.log(response);
       }
     });
   }

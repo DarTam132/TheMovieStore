@@ -9,6 +9,8 @@ export const photoInput = document.getElementById("photo");
 export const priceInput = document.getElementById("price");
 export const typeInput = document.getElementById("type");
 export const descriptionInput = document.getElementById("description");
+export const customDOMNav = (el) =>
+  el.parentNode.previousSibling.previousSibling.children[0].textContent;
 import { movieArray } from "./config.js";
 import { addToMockApi } from "./config.js";
 
