@@ -9,8 +9,8 @@ export const photoInput = document.getElementById("photo");
 export const priceInput = document.getElementById("price");
 export const typeInput = document.getElementById("type");
 export const descriptionInput = document.getElementById("description");
-export const customDOMNav = (el) =>
-  el.parentNode.previousSibling.previousSibling.children[0].textContent;
+export const customDOMNav = (el, nr = 0) =>
+  el.parentNode.previousSibling.previousSibling.children[nr].textContent;
 import { movieArray } from "./config.js";
 import { addToMockApi } from "./config.js";
 
@@ -18,8 +18,8 @@ export const movieView = (movie) => {
   moviesTable.innerHTML += ` <div class="movie-line ${
     movie.custom_id % 2 === 1 ? "background-odd" : "background-even"
   }">
-  <div class="nr-title-img">
-  <span class="movie-number table-style">${movie.custom_id}.</span>
+  <div class="nr-title-img">       
+ <span class="movie-number table-style">${movie.custom_id}.</span>
   <img
   class="movie-photo"
   src="${

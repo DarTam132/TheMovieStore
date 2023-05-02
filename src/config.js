@@ -86,3 +86,33 @@ export const strToNumber = (str) =>
     .split("")
     .filter((e) => !isNaN(+e))
     .join("");
+
+/*
+// sample JSON data with custom IDs
+const jsonData = [
+  { id: 1, name: 'Element 1' },
+  { id: 2, name: 'Element 2' },
+  { id: 3, name: 'Element 3' },
+  // ... up to element 81
+];
+
+function deleteElement(id) {
+  // find the index of the element with the given ID
+  const index = jsonData.findIndex(elem => elem.id === id);
+
+  // remove the element from the JSON data array
+  jsonData.splice(index, 1);
+
+  // update the IDs of the remaining elements
+  for (let i = index; i < jsonData.length; i++) {
+    jsonData[i].id = i + 1; // update the ID to the new position
+  }
+
+  // return the updated JSON data
+  return jsonData;
+}
+
+// example usage: delete element with ID 23
+const updatedData = deleteElement(23);
+console.log(updatedData);
+*/

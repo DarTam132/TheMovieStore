@@ -67,7 +67,7 @@
 
 .admin-main {
   margin: 0 auto;
-  width: 55vw;
+  width: 75vw;
   border-radius: 1.5rem;
   border: solid 0.3rem var(--main);
   display: flex;
@@ -76,16 +76,21 @@
   justify-content: center;
 }
 
+.movie-title {
+  width: 50rem;
+  display: flex;
+  justify-content: center;
+}
 .movie-photo {
-  width: 4rem;
-  height: 4rem;
+  width: 7rem;
+  height: 7rem;
 }
 
 .nr-title-img {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 4rem;
   margin-left: 1rem;
 }
 
@@ -114,7 +119,7 @@
 
 .movie-line {
   margin: 0 auto;
-  height: 6rem;
+  height: 10rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -155,11 +160,24 @@
   border-radius: 1.5rem;
 }
 
-.hidden {
-  display: none;
-}
 .movie-price {
+  display: flex;
+  justify-content: flex;
   margin: -3rem;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.margin {
+  /* margin-right: 0rem; */
+}
+
+.price-heading {
+  display: flex;
+  gap: 5rem;
+  margin-right: 2.5rem;
 }
 /**********************/
 /* Admin table styles */
@@ -216,12 +234,37 @@ form button {
   /* margin: 2.6rem 0 0 7rem; */
 }
 
+.margin-top {
+  margin-top: -3rem;
+  border-top: none;
+}
+
 .overlay {
   width: 100vw;
   height: 100vh;
   background-color: #262a5661;
   position: absolute;
 }
+
+.question {
+  width: 50rem;
+  height: 15rem;
+  padding: 2rem;
+  margin-bottom: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* flex-wrap: wrap; */
+  gap: 2.5rem;
+  border: #000000 solid 0.3rem;
+  border-radius: 1.5rem;
+}
+
 /**********************/
 /* Admin form styles */
 /********************/
+
+.hidden {
+  display: none;
+}
