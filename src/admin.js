@@ -16,7 +16,6 @@ const cancelBtn = document.querySelector("#cancel-btn");
 const addForm = document.querySelector(".add-to-mock");
 const tableOfContent = document.querySelector(".table-content");
 const questionForm = document.querySelector(".question");
-// const questionMovie = document.querySelector(".question-movie");
 
 addBtn.addEventListener("click", Views.toggle);
 overlay.addEventListener("click", Views.toggle);
@@ -113,4 +112,3 @@ tableOfContent.addEventListener("click", (e) => {
     });
   }
 });
-// parentNode.previousSibling.previousSibling.children[nr].textContent;

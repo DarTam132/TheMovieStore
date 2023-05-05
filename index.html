@@ -4,12 +4,52 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script defer type="module" src="src/admin.js"></script>
+    <link rel="stylesheet" href="src/style.css" />
+    <script defer type="module" src="src/index.js"></script>
+    <script defer type="module" src="src/views.js"></script>
     <title>TheMovieStore</title>
   </head>
   <body>
-    <h1>
-      <a href="admin.html"> salut</a>
-    </h1>
+    <div class="index-container">
+      <nav class="index-nav">
+        <a class="logo" href="#">TheMovieStore</a>
+        <div class="nav-elements">
+          <select name="" id="categories">
+            <option class="hidden" value="" selected disabled>
+              Categories
+            </option>
+            <option value="">All</option>
+            <option value="">Action</option>
+            <option value="">Love</option>
+            <option value="">Animated</option>
+            <option value="">Horror</option>
+          </select>
+          <select name="" id="prices" aria-placeholder="Price">
+            <option class="hidden" value="" selected disabled>Price</option>
+            <option value="">Ascendent</option>
+            <option value="">Descendent</option>
+          </select>
+          <a class="basket-link" href="basket.html">Basket</a>
+          <a class="admin-link" href="admin.html">Admin</a>
+        </div>
+      </nav>
+      <main class="index-body">
+        <div class="movies-category">All</div>
+        <div class="movies-container">
+          <!-- <div class="movie-sticker">
+            <img
+              class="movie-poster"
+              src="https://images.unsplash.com/photo-1683146105111-3e27cf83080d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60"
+              alt="movie"
+            />
+            <span class="title">Title: The first movie title </span>
+            <span class="title"> Type: Horror</span>
+            <span class="title">Language: English</span>
+            <span class="title">15$</span>
+            <button class="details">Details</button>
+          </div> -->
+        </div>
+      </main>
+    </div>
   </body>
 </html>

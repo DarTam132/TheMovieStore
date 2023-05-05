@@ -9,10 +9,11 @@ export const photoInput = document.getElementById("photo");
 export const priceInput = document.getElementById("price");
 export const typeInput = document.getElementById("type");
 export const descriptionInput = document.getElementById("description");
+export const moviesGallery = document.querySelector(".movies-container");
+
 export const customDOMNav = (el, nr = 0) =>
   el.parentNode.previousSibling.previousSibling.children[nr].textContent;
-import { movieArray } from "./config.js";
-import { addToMockApi } from "./config.js";
+import { movieArray, addToMockApi, firstLetterBig } from "./config.js";
 
 export const movieView = (movie) => {
   moviesTable.innerHTML += ` <div class="movie-line ${
@@ -82,4 +83,25 @@ export const renderNewAddedMovie = async () => {
 
   inputs.forEach((e) => (e.value = ""));
   return newMovie;
+};
+
+const addMoviestoGallery = (movie) => {
+  moviesGallery.innerHTML += `
+  <div class="movie-sticker">
+  <img
+    class="movie-poster"
+    src="${
+      movie.movie_photo.length === 32 || movie.movie_photo.length === 31
+        ? `https://image.tmdb.org/t/p/w500${movie.movie_photo}`
+        : movie.movie_photo
+    }"
+    alt="movie"
+  />
+  <span class="title">Title: ${movie.movie_title} </span>
+  <span class="title"> Type: ${firstLetterBig(movie.type)}</span>
+  <span class="title">Language: English</span>
+  <span class="title">${movie.price}$</span>
+  <button class="details">Details</button>
+</div>
+  `;
 };
