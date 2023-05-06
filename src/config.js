@@ -9,6 +9,43 @@ export const types = {
 export const MOCK_API_LINK =
   "https://644285cb33997d3ef912811f.mockapi.io/admin/movies";
 
+export const languageNames = {
+  en: "English",
+  es: "Spanish",
+  fr: "French",
+  de: "German",
+  it: "Italian",
+  pt: "Portuguese",
+  ja: "Japanese",
+  ko: "Korean",
+  cn: "Chinese",
+  ar: "Arabic",
+  ru: "Russian",
+  hi: "Hindi",
+  bn: "Bengali",
+  ur: "Urdu",
+  fa: "Persian",
+  tr: "Turkish",
+  nl: "Dutch",
+  pl: "Polish",
+  sv: "Swedish",
+  no: "Norwegian",
+  fi: "Finnish",
+  da: "Danish",
+  he: "Hebrew",
+  el: "Greek",
+  cs: "Czech",
+  sk: "Slovak",
+  hu: "Hungarian",
+  ro: "Romanian",
+  th: "Thai",
+  vi: "Vietnamese",
+  ms: "Malay",
+  id: "Indonesian",
+  fil: "Filipino",
+  // add more language codes and names as needed
+};
+export const language = (lang) => languageNames[lang];
 // Population the mock API with data from the movie DB API
 
 const getMovies = async (type, id) => {
@@ -89,4 +126,7 @@ export const strToNumber = (str) =>
 
 export const firstLetterBig = (str) => str[0].toUpperCase() + str.slice(1);
 
-//  export const
+// export const getMoviesForGallery = async () => {
+//   const request = await fetch(MOCK_API_LINK);
+//   const response = await request.json();
+// };

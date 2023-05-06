@@ -13,7 +13,13 @@ export const moviesGallery = document.querySelector(".movies-container");
 
 export const customDOMNav = (el, nr = 0) =>
   el.parentNode.previousSibling.previousSibling.children[nr].textContent;
-import { movieArray, addToMockApi, firstLetterBig } from "./config.js";
+import {
+  movieArray,
+  addToMockApi,
+  firstLetterBig,
+  languageNames,
+  language,
+} from "./config.js";
 
 export const movieView = (movie) => {
   moviesTable.innerHTML += ` <div class="movie-line ${
@@ -76,6 +82,7 @@ export const renderNewAddedMovie = async () => {
     type: typeInput.value,
   };
 
+
   movieView(newMovie);
   // Adding the movie to the mock in the same function with the rendering.
   addToMockApi(newMovie);
@@ -85,7 +92,7 @@ export const renderNewAddedMovie = async () => {
   return newMovie;
 };
 
-const addMoviestoGallery = (movie) => {
+export const addMoviestoGallery = (movie) => {
   moviesGallery.innerHTML += `
   <div class="movie-sticker">
   <img
@@ -99,7 +106,7 @@ const addMoviestoGallery = (movie) => {
   />
   <span class="title">Title: ${movie.movie_title} </span>
   <span class="title"> Type: ${firstLetterBig(movie.type)}</span>
-  <span class="title">Language: English</span>
+  <span class="title">Language: ${language(movie.language)}</span>
   <span class="title">${movie.price}$</span>
   <button class="details">Details</button>
 </div>

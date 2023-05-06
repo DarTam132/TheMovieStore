@@ -7,7 +7,7 @@ import {
 } from "./config.js";
 import * as Views from "./views.js";
 
-const loadingSpinner = document.querySelector(".loading");
+export const loadingSpinner = document.querySelector(".loading");
 const addBtn = document.querySelector(".add-btn");
 const mainTable = document.querySelector(".admin-main");
 const form = document.querySelector("form");
