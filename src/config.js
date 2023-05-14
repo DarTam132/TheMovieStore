@@ -104,7 +104,7 @@ export const movieArray = async () => {
     if (!getMovies.ok) throw err;
     const res = await getMovies.json();
 
-    return res.length;
+    return res[res.length - 1].custom_id;
   } catch (err) {
     console.error(err);
   }

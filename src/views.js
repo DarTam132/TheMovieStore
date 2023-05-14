@@ -64,6 +64,7 @@ export const renderNewAddedMovie = async () => {
   ];
 
   let nr = (await movieArray()) + 1;
+
   if (isNaN(Number(priceInput.value)) || !isFinite(priceInput.value)) {
     alert("You entered an invalid value for the movie price!");
     return;
@@ -81,7 +82,6 @@ export const renderNewAddedMovie = async () => {
     price: priceInput.value,
     type: typeInput.value,
   };
-
 
   movieView(newMovie);
   // Adding the movie to the mock in the same function with the rendering.
@@ -107,7 +107,7 @@ export const addMoviestoGallery = (movie) => {
   <span class="title">Title: ${movie.movie_title} </span>
   <span class="title"> Type: ${firstLetterBig(movie.type)}</span>
   <span class="title">Language: ${language(movie.language)}</span>
-  <span class="title">${movie.price}$</span>
+  <span class="title priceTag">$${movie.price}</span>
   <button class="details">Details</button>
 </div>
   `;

@@ -84,7 +84,9 @@ window.addEventListener("load", () => setTimeout(mockAPImovies, 1500));
 tableOfContent.addEventListener("click", (e) => {
   if (e.target.classList.contains("delete-btn")) {
     const customId = strToNumber(Views.customDOMNav(e.target));
+    console.log(customId);
     const title = Views.customDOMNav(e.target, 2);
+    console.log(title);
     const titleElement = e.target.parentNode.parentNode;
 
     tableOfContent.classList.toggle("hidden");
@@ -108,6 +110,7 @@ tableOfContent.addEventListener("click", (e) => {
         const request = await fetch(`${MOCK_API_LINK}/${customId}`, {
           method: "DELETE",
         });
+        // console.log(request);
       }
     });
   }

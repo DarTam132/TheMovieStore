@@ -15,6 +15,7 @@
 /**********************/
 /* Admin table styles */
 /********************/
+
 .table-style {
   font-size: 2.5rem;
 }
@@ -26,6 +27,7 @@
   height: 100%;
   width: 100%;
   background-color: var(--secondary2);
+  /* position: relative; */
 }
 .admin-nav {
   width: 100%;
@@ -239,6 +241,14 @@ form button {
   background-color: #262a5661;
   position: absolute;
 }
+
+/* .start {
+  width: 100vw;
+  height: 100vh;
+  background-color: #e3ccae;
+  position: absolute;
+
+} */
 
 .question {
   width: 50rem;
