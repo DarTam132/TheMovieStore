@@ -10,6 +10,7 @@ const loadingSpinner = document.querySelector(".loading-index");
 const selectCategory = document.getElementById("categories");
 const priceOption = document.getElementById("prices");
 const categoryTitle = document.querySelector(".movies-category");
+export const moviesNr = document.querySelector(".movies-nr");
 
 export let wantedMovie = "";
 const allMoviesGallery = async () => {
@@ -23,10 +24,13 @@ const allMoviesGallery = async () => {
   }
 };
 
-// let lsData = [];
 let lsData = JSON.parse(localStorage.getItem("movies"));
 
 const basketmovies = lsData === null ? [] : [...lsData];
+if (basketmovies.length !== 0) {
+  moviesNr.classList.remove("hidden");
+  moviesNr.textContent = basketmovies.length;
+}
 
 window.addEventListener("load", () => setTimeout(allMoviesGallery, 1500));
 logo.addEventListener("click", () => location.reload());

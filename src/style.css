@@ -57,6 +57,25 @@
   background-color: var(--secondary2);
 }
 
+.basket-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.movies-nr {
+  color: var(--main);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  font-weight: 600;
+  margin-left: 2rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  background-color: var(--secondary3);
+  border-radius: 50%;
+}
+
 .loading svg,
 .loading-index svg {
   height: 15rem;
