@@ -10,6 +10,8 @@ export const priceInput = document.getElementById("price");
 export const typeInput = document.getElementById("type");
 export const descriptionInput = document.getElementById("description");
 export const moviesGallery = document.querySelector(".movies-container");
+export const indexBody = document.querySelector(".index-body");
+export const detailedMovie = document.querySelector(".detailed-movie");
 
 export const customDOMNav = (el, nr = 0) =>
   el.parentNode.previousSibling.previousSibling.children[nr].textContent;
@@ -102,13 +104,47 @@ export const addMoviestoGallery = (movie) => {
         ? `https://image.tmdb.org/t/p/w500${movie.movie_photo}`
         : movie.movie_photo
     }"
-    alt="movie"
+    alt="Movie Poster"
   />
-  <span class="title">Title: ${movie.movie_title} </span>
+  <span class="title">Title: ${movie.movie_title}</span>
   <span class="title"> Type: ${firstLetterBig(movie.type)}</span>
   <span class="title">Language: ${language(movie.language)}</span>
   <span class="title priceTag">$${movie.price}</span>
   <button class="details">Details</button>
 </div>
   `;
+};
+
+export const detailedMovieContent = (movie) => {
+  detailedMovie.innerHTML = `
+  <div class="detailed-movie-container">
+  <div class="detailed-movie-title">${movie.movie_title}</div>
+  <div class="little-details">
+    <span class="lng-type">${language(
+      movie.language
+    )}</span> <hr class="vertical-break-line" /> <span class="lng-type">${firstLetterBig(
+    movie.type
+  )}</span><hr class="vertical-break-line" /> <span class="lng-type">${
+    movie.price
+  }$</span>
+  </div>
+  <hr class="horizontal-break-line" />
+  <div class="main-details">
+    <img
+    class="detailed-movie-poster"
+      src="${
+        movie.movie_photo.length === 32 || movie.movie_photo.length === 31
+          ? `https://image.tmdb.org/t/p/w500${movie.movie_photo}`
+          : movie.movie_photo
+      }"
+    />
+    <div class="description-btns">
+      <span class="description"
+        ><strong>Description:</strong> ${movie.description}</span>
+        <div class="detailed-btns">
+      <button class="back">Back</button
+      ><button class="basket">Add to basket</button>
+    </div>
+    </div>
+    </div>`;
 };

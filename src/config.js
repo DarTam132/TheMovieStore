@@ -45,6 +45,7 @@ export const languageNames = {
   fil: "Filipino",
   // add more language codes and names as needed
 };
+
 export const language = (lang) => languageNames[lang];
 // Population the mock API with data from the movie DB API
 
@@ -130,3 +131,15 @@ export const firstLetterBig = (str) => str[0].toUpperCase() + str.slice(1);
 //   const request = await fetch(MOCK_API_LINK);
 //   const response = await request.json();
 // };
+
+export const checkAndAdd = (arr, el) => {
+  let found = false;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].movie_title === el.movie_title) {
+      found = true;
+      alert("You have already selected this movie");
+      break;
+    }
+  }
+  if (!found) arr.push(el);
+};

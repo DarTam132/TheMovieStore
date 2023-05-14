@@ -110,7 +110,6 @@ tableOfContent.addEventListener("click", (e) => {
         const request = await fetch(`${MOCK_API_LINK}/${customId}`, {
           method: "DELETE",
         });
-        // console.log(request);
       }
     });
   }

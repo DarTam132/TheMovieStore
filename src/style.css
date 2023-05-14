@@ -12,6 +12,10 @@
   --secondary3: #e3ccae;
 }
 
+.hidden {
+  display: none !important;
+}
+
 /**********************/
 /* Admin table styles */
 /********************/
@@ -269,10 +273,6 @@ form button {
 /* Admin form styles */
 /********************/
 
-.hidden {
-  display: none;
-}
-
 /**********************/
 /* Index styles */
 /********************/
@@ -393,4 +393,99 @@ select:focus {
   color: var(--secondary3);
   border: none;
   border-radius: 1.5rem;
+}
+
+.detailed-movie {
+  height: 87vh;
+  width: 97vw;
+  background-color: var(--secondary2);
+}
+
+.detailed-movie-container {
+  margin: 0 auto;
+  padding: 3rem;
+  width: 65vw;
+  height: 85rem;
+  border: solid 0.3rem var(--main);
+  border-radius: 3rem;
+}
+
+.detailed-movie-title {
+  font-size: 7rem;
+}
+
+.little-details {
+  display: flex;
+  gap: 3rem;
+  margin: 2rem 0 2rem 0;
+  height: 5rem;
+  width: 45rem;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: var(--secondary1);
+  border: 0.1rem solid var(--secondary3);
+  border-radius: 2rem;
+}
+
+.lng-type {
+  font-size: 3rem;
+  color: var(--secondary3);
+}
+
+.vertical-break-line {
+  border-left: 1px solid black;
+  height: 5rem;
+}
+
+.horizontal-break-line {
+  border: none;
+  border-top: 0.3rem solid black;
+  margin: 3rem 0 3rem 0;
+}
+
+.main-details {
+  display: flex;
+  align-items: start;
+  gap: 5rem;
+}
+
+.detailed-movie-poster {
+  width: 45rem;
+  height: 55rem;
+  border-radius: 3rem;
+}
+
+.description-btns {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.description,
+strong {
+  font-size: 4rem;
+}
+
+.detailed-btns {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  margin-right: 1rem;
+  align-self: center;
+  margin-top: 5rem;
+}
+
+.back,
+.basket {
+  font-size: 3rem;
+  width: 15rem;
+  height: 4rem;
+  background-color: var(--secondary1);
+  color: var(--secondary3);
+  border: 0.2rem solid var(--secondary3);
+  border-radius: 1.5rem;
+}
+
+.basket {
+  width: 25rem;
 }

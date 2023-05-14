@@ -1,10 +1,17 @@
 import * as Views from "./views.js";
-import { MOCK_API_LINK, firstLetterBig, strToNumber } from "./config.js";
+import {
+  MOCK_API_LINK,
+  firstLetterBig,
+  strToNumber,
+  checkAndAdd,
+} from "./config.js";
+const logo = document.querySelector(".index-logo");
 const loadingSpinner = document.querySelector(".loading-index");
 const selectCategory = document.getElementById("categories");
 const priceOption = document.getElementById("prices");
 const categoryTitle = document.querySelector(".movies-category");
 
+export let wantedMovie = "";
 const allMoviesGallery = async () => {
   try {
     const request = await fetch(MOCK_API_LINK);
@@ -16,7 +23,13 @@ const allMoviesGallery = async () => {
   }
 };
 
+// let lsData = [];
+let lsData = JSON.parse(localStorage.getItem("movies"));
+
+const basketmovies = lsData === null ? [] : [...lsData];
+
 window.addEventListener("load", () => setTimeout(allMoviesGallery, 1500));
+logo.addEventListener("click", () => location.reload());
 
 selectCategory.addEventListener("change", async function () {
   try {
@@ -41,7 +54,7 @@ priceOption.addEventListener("change", (e) => {
   let cards = Array.from(
     Views.moviesGallery.getElementsByClassName("movie-sticker")
   );
-
+  // Sorting that array
   cards.sort((a, b) => {
     let priceA = parseInt(a.querySelector(".priceTag").textContent.slice(1));
     let priceB = parseInt(b.querySelector(".priceTag").textContent.slice(1));
@@ -49,6 +62,32 @@ priceOption.addEventListener("change", (e) => {
   });
 
   Views.moviesGallery.innerHTML = "";
-
+  // Filling the gallery with the new data
   cards.forEach((card) => Views.moviesGallery.appendChild(card));
 });
+
+Views.moviesGallery.addEventListener("click", async (e) => {
+  let title = "";
+  if (!e.target.classList.contains("details")) return;
+  else if (e.target.classList.contains("details"))
+    title = e.target.parentNode.children[1].textContent.slice(7);
+  const request = await fetch(MOCK_API_LINK);
+  const response = await request.json();
+  wantedMovie = response.filter((movie) => movie.movie_title === title)[0];
+  Views.indexBody.classList.toggle("hidden");
+  Views.detailedMovie.classList.toggle("hidden");
+  Views.detailedMovieContent(wantedMovie);
+
+  const backBtn = document.querySelector(".back");
+  backBtn.addEventListener("click", () => {
+    Views.indexBody.classList.toggle("hidden");
+    Views.detailedMovie.classList.toggle("hidden");
+  });
+
+  const addToBasketBtn = document.querySelector(".basket");
+  addToBasketBtn.addEventListener("click", () => {
+    checkAndAdd(basketmovies, wantedMovie);
+    localStorage.setItem("movies", JSON.stringify(basketmovies));
+  });
+});
+// localStorage.clear();
