@@ -4,9 +4,45 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=3, initial-scale=1.0" />
+    <script defer type="module" src="src/basket.js"></script>
+    <link rel="stylesheet" href="style.css" />
     <title>TheMovieStore</title>
   </head>
   <body>
-    <h1><a href="index.html">Index</a></h1>
+    <div class="basket-container">
+      <nav class="basket-nav">
+        <span
+          ><a class="logo basket-logo" href="index.html">TheMovieStore</a></span
+        >
+      </nav>
+      <main class="basket-main">
+        <div class="summary">
+          <div class="summary-title">Basket Summary</div>
+
+          <span class="items-span font"
+            >Items: <span class="items-span-nr font"></span
+          ></span>
+
+          <span class="items-total font"
+            >Total price: <span class="items-total-val font"></span> $</span
+          >
+
+          <div class="summary-btns">
+            <a href="index.html" class="continue-shopping font"
+              >Continue Shopping</a
+            >
+            <button class="proceed font">Proceed to Checkout</button>
+          </div>
+        </div>
+        <div class="basket-content-table">
+          <div class="basket-heading-row basket-content-row">
+            <span class="font">Photo</span>
+            <span class="basket-movie-title font">Title</span>
+            <span class="basket-movie-price font">Price</span>
+            <span class="font">Remove</span>
+          </div>
+        </div>
+      </main>
+    </div>
   </body>
 </html>

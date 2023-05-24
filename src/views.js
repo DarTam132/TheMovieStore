@@ -12,6 +12,7 @@ export const descriptionInput = document.getElementById("description");
 export const moviesGallery = document.querySelector(".movies-container");
 export const indexBody = document.querySelector(".index-body");
 export const detailedMovie = document.querySelector(".detailed-movie");
+export const basketTable = document.querySelector(".basket-content-table");
 
 export const customDOMNav = (el, nr = 0) =>
   el.parentNode.previousSibling.previousSibling.children[nr].textContent;
@@ -147,4 +148,18 @@ export const detailedMovieContent = (movie) => {
     </div>
     </div>
     </div>`;
+};
+
+export const renderMoviesFromTheBasket = (movie) => {
+  basketTable.innerHTML += `
+  <div class="basket-content-row">
+   <img src="${
+     movie.movie_photo.length === 32 || movie.movie_photo.length === 31
+       ? `https://image.tmdb.org/t/p/w500${movie.movie_photo}`
+       : movie.movie_photo
+   }" alt="Movie Poster" class="basket-movie-img font"/>
+   <span class="basket-movie-title font">${movie.movie_title}</span>
+   <span class="basket-movie-price font">${movie.price}</span>
+   <button class="remove-from-basket font">Remove</button>
+  </div>`;
 };

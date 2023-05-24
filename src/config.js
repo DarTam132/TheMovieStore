@@ -1,4 +1,6 @@
-import { moviesNr } from "./index.js";
+// import { moviesNr } from "./index.js";
+
+// import { moviesNr } from ".";
 
 export const apiKey = `3d04aea08cd22c983a876e984b0457b7`;
 export const MOVIE_DB_URL = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&page=1&with_genres=`;
@@ -145,6 +147,5 @@ export const checkAndAdd = (arr, el) => {
   }
   if (!found) {
     arr.push(el);
-    moviesNr.textContent++;
   }
 };
