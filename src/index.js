@@ -5,14 +5,15 @@ import {
   strToNumber,
   checkAndAdd,
 } from "./config.js";
+
 const logo = document.querySelector(".index-logo");
 const loadingSpinner = document.querySelector(".loading-index");
 const selectCategory = document.getElementById("categories");
 const priceOption = document.getElementById("prices");
 const categoryTitle = document.querySelector(".movies-category");
 export const moviesNr = document.querySelector(".movies-nr");
+let wantedMovie = "";
 
-export let wantedMovie = "";
 const allMoviesGallery = async () => {
   try {
     const request = await fetch(MOCK_API_LINK);
@@ -20,19 +21,23 @@ const allMoviesGallery = async () => {
     loadingSpinner.classList.add("hidden");
     response.forEach((movie) => Views.addMoviestoGallery(movie));
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 
 let lsData = JSON.parse(localStorage.getItem("movies"));
+let basketmovies;
 
-const basketmovies = lsData === null ? [] : [...lsData];
-if (basketmovies.length !== 0) {
-  moviesNr.classList.remove("hidden");
-  moviesNr.textContent = basketmovies.length;
-}
+window.addEventListener("load", async () => {
+  setTimeout(allMoviesGallery, 1500);
+  basketmovies = lsData === null ? [] : [...lsData];
+  if (basketmovies.length !== 0) {
+    moviesNr.classList.remove("hidden");
+    moviesNr.textContent = basketmovies.length;
+  }
+});
 
-window.addEventListener("load", () => setTimeout(allMoviesGallery, 1500));
+console.log(logo);
 logo.addEventListener("click", () => location.reload());
 
 selectCategory.addEventListener("change", async function () {
@@ -47,6 +52,7 @@ selectCategory.addEventListener("change", async function () {
       if (movie.type === this.value) Views.addMoviestoGallery(movie);
       else if (this.value === "all") Views.addMoviestoGallery(movie);
     });
+    document.getElementById("prices").selectedIndex = 0;
   } catch (err) {
     console.error(err);
   }
