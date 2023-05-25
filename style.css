@@ -417,16 +417,22 @@ select:focus {
 }
 
 .detailed-movie {
-  height: 87vh;
-  width: 97vw;
+  position: fixed;
+  top: 8vh;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-color: var(--secondary2);
 }
 
 .detailed-movie-container {
   margin: 0 auto;
-  padding: 3rem;
-  width: 65vw;
-  height: 85rem;
+  margin-top: 5rem;
+  padding: 4rem;
+  display: inline-block;
+  width: auto;
+  height: auto;
+  background-color: var(--secondary2);
   border: solid 0.3rem var(--main);
   border-radius: 3rem;
 }
