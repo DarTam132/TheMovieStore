@@ -312,7 +312,7 @@ form button {
 #categories,
 #prices,
 select option {
-  background-color: #262a56;
+  background-color: var(--secondary1);
   color: var(--secondary3);
   border: 0.3rem solid var(--secondary3);
   border-radius: 2rem;
